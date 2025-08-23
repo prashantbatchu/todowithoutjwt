@@ -23,7 +23,7 @@ const Dashboard = () => {
   // Fetch tasks from backend
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('/api/tasks');
+      const response = await axios.get('https://todowithoutjwt.onrender.com/api/tasks');
       console.log("Fetched tasks:", response.data);
       // Ensure tasks is always an array
       setTasks(Array.isArray(response.data) ? response.data : []);
@@ -38,7 +38,7 @@ const Dashboard = () => {
   // Add a new task
   const handleAddTask = async (taskData) => {
     try {
-      const response = await axios.post('/api/tasks', taskData);
+      const response = await axios.post('https://todowithoutjwt.onrender.com/api/tasks', taskData);
       const newTask = response.data;
       if (newTask && typeof newTask === 'object') {
         setTasks(prev => [newTask, ...prev]);
@@ -51,7 +51,7 @@ const Dashboard = () => {
   // Toggle task completed
   const handleToggleComplete = useCallback(async (taskId, completed) => {
     try {
-      const response = await axios.put(`/api/tasks/${taskId}`, { completed });
+      const response = await axios.put(`https://todowithoutjwt.onrender.com/api/tasks/${taskId}`, { completed });
       const updatedTask = response.data;
       setTasks(prev => prev.map(t => (t._id === updatedTask._id ? updatedTask : t)));
     } catch (error) {
@@ -62,7 +62,7 @@ const Dashboard = () => {
   // Delete a task
   const handleDeleteTask = useCallback(async (taskId) => {
     try {
-      await axios.delete(`/api/tasks/${taskId}`);
+      await axios.delete(`https://todowithoutjwt.onrender.com/api/tasks/${taskId}`);
       setTasks(prev => prev.filter(t => t._id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
