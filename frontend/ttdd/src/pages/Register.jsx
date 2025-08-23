@@ -80,7 +80,7 @@ const Register = () => {
             </div>
             <div>
               <label htmlFor="password" className="sr-only">
-                Password
+                Password with min 6-characters
               </label>
               <input
                 id="password"
