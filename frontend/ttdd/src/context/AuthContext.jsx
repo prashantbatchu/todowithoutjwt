@@ -33,8 +33,6 @@ const initialState = {
 };
 
 
-axios.defaults.baseURL = 'https://todowithoutjwt.onrender.com/';
-
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -58,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     dispatch({ type: 'LOGIN_START' });
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post('https://todowithoutjwt.onrender.com/api/auth/login', { email, password });
       dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
       localStorage.setItem('user', JSON.stringify(response.data));
     } catch (error) {
@@ -72,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password) => {
     dispatch({ type: 'REGISTER_START' });
     try {
-      const response = await axios.post('/api/auth/register', {
+      const response = await axios.post('https://todowithoutjwt.onrender.com/api/auth/register', {
         name,
         email,
         password
